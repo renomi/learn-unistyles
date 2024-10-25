@@ -1,22 +1,25 @@
-import { forwardRef } from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { useStyles } from 'react-native-unistyles';
+import { Pressable, Text } from 'react-native';
 
 type ButtonProps = {
-  title?: string;
-} & TouchableOpacityProps;
+  color?: string;
+  textColor?: string;
+  title: string;
+  onPress: VoidFunction;
+};
 
-export const Button = forwardRef<TouchableOpacity, ButtonProps>(
-  ({ title, ...touchableProps }, ref) => {
-    const { theme } = useStyles();
-
-    return (
-      <TouchableOpacity
-        ref={ref}
-        {...touchableProps}
-        style={[theme.components.button, touchableProps.style]}>
-        <Text style={theme.components.buttonText}>{title}</Text>
-      </TouchableOpacity>
-    );
-  }
+export const Button: React.FunctionComponent<ButtonProps> = ({
+  onPress,
+  title,
+  textColor = 'white',
+  color = '#29cbfa',
+}) => (
+  <Pressable
+    onPress={onPress}
+    style={{
+      backgroundColor: color,
+      padding: 10,
+      borderRadius: 10,
+    }}>
+    <Text style={{ color: textColor }}>{title}</Text>
+  </Pressable>
 );
