@@ -8,15 +8,15 @@ import { DemoGroup, DemoLink } from '~/components';
 import { breakpoints, darkTheme, lightTheme, premiumTheme } from '~/styles';
 import { autoGuidelinePlugin } from '~/styles/plugins';
 
-UnistylesRuntime.statusBar.setColor('#000000', 0.2);
-UnistylesRuntime.navigationBar.setColor('#000000', 0.2);
-UnistylesRuntime.setRootViewBackgroundColor('#ff9ff3');
-
 export default function HomeScreen() {
   const router = useRouter();
 
   useEffect(() => {
     if (isWeb) {
+      UnistylesRuntime.statusBar.setColor('#000000', 0.2);
+      UnistylesRuntime.navigationBar.setColor('#000000', 0.2);
+      UnistylesRuntime.setRootViewBackgroundColor('#ff9ff3');
+    } else {
       console.log(
         'Warnings about deprecated syntax comes from StyleSheet.create. Unistyles 🦄 will handle it for you!'
       );

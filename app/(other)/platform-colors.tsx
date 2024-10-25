@@ -1,6 +1,7 @@
 import { Text, View, PlatformColor, Platform } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
+import { isWeb } from '~/common';
 import { DemoScreen } from '~/components';
 
 export default function PlatformColors() {
@@ -22,12 +23,12 @@ const stylesheet = createStyleSheet({
     alignItems: 'center',
     ...Platform.select({
       ios: {
-        color: PlatformColor('label'),
-        backgroundColor: PlatformColor('systemTealColor'),
+        color: !isWeb ? PlatformColor('label') : undefined,
+        backgroundColor: !isWeb ? PlatformColor('systemTealColor') : undefined,
       },
       android: {
-        color: PlatformColor('?android:attr/textColor'),
-        backgroundColor: PlatformColor('@android:color/holo_blue_bright'),
+        color: !isWeb ? PlatformColor('?android:attr/textColor') : undefined,
+        backgroundColor: !isWeb ? PlatformColor('@android:color/holo_blue_bright') : undefined,
       },
       default: {
         color: 'black',
@@ -37,8 +38,8 @@ const stylesheet = createStyleSheet({
   },
   text: {
     color: {
-      sm: PlatformColor('label'),
-      md: PlatformColor('systemTealColor'),
+      sm: !isWeb ? PlatformColor('label') : undefined,
+      md: !isWeb ? PlatformColor('systemTealColor') : undefined,
     },
   },
 });
